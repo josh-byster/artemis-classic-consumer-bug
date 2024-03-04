@@ -2,20 +2,20 @@ package org.example;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
-import javax.jms.*;
 import java.util.UUID;
+import jakarta.jms.*;
 
-import static javax.jms.Session.AUTO_ACKNOWLEDGE;
+import static jakarta.jms.Session.AUTO_ACKNOWLEDGE;
 
 public class Producer {
     public static void main(String[] args) throws JMSException, InterruptedException {
         ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
-        activeMQConnectionFactory.setBrokerURL("tcp://localhost:61618");
+        activeMQConnectionFactory.setBrokerURL("tcp://localhost:61616");
         Connection connection = activeMQConnectionFactory.createConnection();
         connection.start();
 
         Session session = connection.createSession(false, AUTO_ACKNOWLEDGE);
-        Destination test = session.createQueue("test4");
+        Destination test = session.createQueue("exampleQueueTwo");
         MessageProducer producer = session.createProducer(test);
         producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
         UUID uuid = UUID.randomUUID();

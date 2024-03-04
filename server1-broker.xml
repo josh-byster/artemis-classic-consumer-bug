@@ -27,6 +27,8 @@ under the License.
 
         <journal-directory>./data/journal</journal-directory>
 
+        <persistence-enabled>false</persistence-enabled>
+
         <large-messages-directory>./data/largemessages</large-messages-directory>
 
         <paging-directory>./data/paging</paging-directory>
@@ -44,6 +46,14 @@ under the License.
         </acceptors>
 
         <!-- Federation -->
+
+        <addresses>
+            <address name="exampleQueueTwo">
+                <anycast>
+                    <queue name="exampleQueueTwo"/>
+                </anycast>
+            </address>
+        </addresses>
 
         <federations>
             <federation name="eu-west-1-federation">
@@ -70,13 +80,21 @@ under the License.
                 </policy-set>
 
                 <queue-policy name="queue-federation">
-                    <include queue-match="exampleQueue" address-match="#"/>
+                    <include queue-match="exampleQueueTwo" address-match="#"/>
                 </queue-policy>
             </federation>
         </federations>
 
         <max-disk-usage>95</max-disk-usage>
 
+        <address-settings>
+            <address-setting match="#">
+                <dead-letter-address>jms.queue.deadLetterQueue</dead-letter-address>
+                <expiry-address>expiryQueue</expiry-address>
+                <auto-delete-addresses>false</auto-delete-addresses>
+                <max-delivery-attempts>3</max-delivery-attempts>
+            </address-setting>
+        </address-settings>
         <!-- Other config -->
 
     </core>

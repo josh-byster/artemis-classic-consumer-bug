@@ -16,8 +16,20 @@
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-client</artifactId>
-            <version>5.16.2</version>
+            <version>6.0.1</version>
         </dependency>
+        <dependency>
+        <groupId>org.apache.activemq</groupId>
+        <artifactId>activemq-client-jakarta</artifactId>
+        <version>6.0.1</version>
+
+        </dependency>
+        <dependency>
+            <groupId>jakarta.jms</groupId>
+            <artifactId>jakarta.jms-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
     </dependencies>
 
     <properties>
